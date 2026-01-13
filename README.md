@@ -220,6 +220,71 @@ REACT_APP_API_URL=http://localhost:5001/api
    - Click delete icon to remove tasks
 5. **Profile**: Click your name in navbar to access profile settings
 
+## Testing
+
+The backend includes comprehensive API tests using Jest and Supertest.
+
+### Running Tests
+
+1. Make sure MongoDB is running locally
+
+2. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+
+3. Run tests:
+   ```bash
+   npm test
+   ```
+
+4. Run tests with coverage report:
+   ```bash
+   npm test -- --coverage
+   ```
+
+### Test Coverage
+
+Tests cover the following areas:
+- **Authentication**: Register, login, token validation
+- **User Management**: Profile retrieval and updates
+- **Task Operations**: CRUD operations, status updates, filtering
+- **Error Handling**: Invalid inputs, unauthorized access, not found resources
+
+## Deployment
+
+### Backend Deployment (Render)
+
+1. Create a free account at [Render](https://render.com)
+2. Create a new Web Service and connect your GitHub repository
+3. Configure the following:
+   - **Build Command**: `cd backend && npm install`
+   - **Start Command**: `cd backend && npm start`
+4. Add environment variables:
+   - `NODE_ENV`: production
+   - `MONGODB_URI`: Your MongoDB Atlas connection string
+   - `JWT_SECRET`: A secure random string
+   - `JWT_EXPIRE`: 7d
+   - `CLIENT_URL`: Your frontend URL
+
+### Frontend Deployment (Vercel)
+
+1. Create a free account at [Vercel](https://vercel.com)
+2. Import your GitHub repository
+3. Configure the following:
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `build`
+4. Add environment variable:
+   - `REACT_APP_API_URL`: Your deployed backend URL + `/api`
+
+### MongoDB Atlas Setup
+
+1. Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/atlas)
+2. Create a database user with read/write permissions
+3. Add `0.0.0.0/0` to IP Access List (for Render access)
+4. Get connection string and use in `MONGODB_URI`
+
 ## Author
 
 **Rohit Rajhans**  
